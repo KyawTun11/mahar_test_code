@@ -4,12 +4,10 @@ class SearchWidget extends StatelessWidget {
   const SearchWidget({
     Key? key,
     required this.enabled,
-    this.searchOnTap,
     this.controller,
     this.onSubmitted,
   }) : super(key: key);
 
-  final VoidCallback? searchOnTap;
   final bool enabled;
   final TextEditingController? controller;
   final ValueChanged<String>? onSubmitted;
@@ -20,14 +18,12 @@ class SearchWidget extends StatelessWidget {
       controller: controller,
       autofocus: false,
       enabled: enabled,
+      onSubmitted: onSubmitted,
       decoration: InputDecoration(
         filled: true,
         fillColor: const Color(0xFFECECEC),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        suffixIcon: InkWell(
-          onTap: searchOnTap,
-          child: const Icon(Icons.search),
-        ),
+        suffixIcon: const Icon(Icons.search),
         hintText: "Search",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),

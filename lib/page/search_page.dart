@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mahar_test_code/page/detail_page.dart';
 import '../controller_provider/search_provider.dart';
 import '../widget/search_item_widget.dart';
 import '../widget/search_widget.dart';
@@ -35,14 +36,16 @@ class SearchPage extends ConsumerWidget {
               image: items.poster,
               title: "${items.name}",
               desc: "${items.desc}",
+              iconColor: items.favorite == true ? Colors.red : Colors.grey,
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => Detail(movie: movie,
-                //     ),
-                //   ),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailPage(
+                      movie: items,
+                    ),
+                  ),
+                );
               },
             );
           }),

@@ -18,13 +18,17 @@ class FavoriteIds extends StateNotifier<List<String>> {
 
   final SharedPreferences? pref;
 
-  void toggle(String favoriteId) {
-    if (state.contains(favoriteId)) {
-      state = state.where((favorite) => favorite != favoriteId).toList();
+  void addFavorite(String favoriteId) {//2
+    if (state.contains(favoriteId)) {// 1,2,3
+      state = state.where((favorite) => favorite != favoriteId).toList(); //1,3
     } else {
       state = [...state, favoriteId];
     }
     pref!.setStringList("id", state);
   }
 
+  List<String>? getFavorite(String favoriteId) {
+    final List<String>? items = pref!.getStringList('id');
+    return items;
+  }
 }

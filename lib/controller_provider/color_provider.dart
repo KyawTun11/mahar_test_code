@@ -11,7 +11,7 @@ class ColorProvider extends StateNotifier<bool> {
     return state;
   }
 
-  toggleFavorite() {
+  changeFavorite() {
     print("toggler has listeners: ${hasListeners}");
     state = !state;
     print("toggled to: ${state}");

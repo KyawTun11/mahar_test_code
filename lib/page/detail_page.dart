@@ -59,15 +59,10 @@ class DetailPage extends ConsumerWidget {
                         : Colors.grey,
                   ),
                   onPressed: () {
-                    ref.read(colorProvider.notifier).toggleFavorite();
-
-                    if (ref.read(colorProvider.notifier).isFavorite) {
-                      ref
-                          .read(FavoriteIds.provider.notifier)
-                          .toggle(movie.id.toString());
-                    } else {
-                      //removeFavorite(movie.favorite);
-                    }
+                    ref.read(colorProvider.notifier).changeFavorite();
+                    ref
+                        .read(FavoriteIds.provider.notifier)
+                        .addFavorite(movie.id.toString());
                   },
                 ),
               ],

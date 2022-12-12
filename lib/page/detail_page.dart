@@ -16,11 +16,13 @@ class DetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorValue = ref.watch(colorProvider);
-    // final favoriteIds = ref.watch(FavoriteIds.provider);
+    ref.watch(colorProvider);
+
+    final favoriteColor = ref.read(colorProvider.notifier).isFavorite;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("${movie.name}"),
+        title: Text(movie.name!),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -51,13 +53,10 @@ class DetailPage extends ConsumerWidget {
                     fontSize: 18,
                   ),
                 ),
-                Text("${movie.favorite}"),
                 IconButton(
                   icon: Icon(
                     Icons.favorite,
-                    color: ref.read(colorProvider.notifier).isFavorite
-                        ? Colors.red
-                        : Colors.grey,
+                    color: favoriteColor ? Colors.red : Colors.grey,
                   ),
                   onPressed: () {
                     ref.read(colorProvider.notifier).changeFavorite();

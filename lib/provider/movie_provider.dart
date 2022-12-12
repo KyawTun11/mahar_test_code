@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/services.dart' as rootBundle;
+import '../controller_provider/local_storage_provider.dart';
 import '../model/movie_model.dart';
 import '../service/movie_service.dart';
 
@@ -23,10 +24,15 @@ class MovieNotifier extends StateNotifier<MovieState> {
   MovieNotifier() : super(const MovieState()) {
     loadMovies();
   }
+
   loadMovies() async {
     state = state.copyWith(isLoading: true);
     final moviesList = await MovieService().fetchMovies();
-    final movies = moviesList.map((e) => MovieModel.fromJson(e)).toList();
+    final movies = moviesList.map((e) {
+      var movie = MovieModel.fromJson(e);
+      return movie;
+    }).toList();
+
     state = state.copyWith(movies: movies, isLoading: false);
   }
 
@@ -37,7 +43,7 @@ class MovieNotifier extends StateNotifier<MovieState> {
         .map((e) => MovieModel.fromJson(e))
         .toList()
         .where((element) =>
-        element.name!.toLowerCase().contains(filter.toLowerCase()))
+            element.name!.toLowerCase().contains(filter.toLowerCase()))
         .toList();
     state = state.copyWith(movies: movies, isLoading: false);
   }

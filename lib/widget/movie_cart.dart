@@ -9,7 +9,7 @@ class MovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+      padding: const EdgeInsets.only(top: 10, left: 16, right: 16),
       child: Container(
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
@@ -37,6 +37,7 @@ class MovieCard extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       movie.name!,
@@ -58,8 +59,6 @@ class MovieCard extends StatelessWidget {
                       Icons.favorite,
                       color: movie.favorite == true ? Colors.red : Colors.grey,
                     ),
-                    Text(movie.id!),
-                    Text("${movie.favorite}"),
                   ],
                 ),
               )

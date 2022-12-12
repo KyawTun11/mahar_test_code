@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 class SearchWidget extends StatelessWidget {
   const SearchWidget({
     Key? key,
-    required this.enabled,
     this.controller,
     this.onSubmitted,
   }) : super(key: key);
 
-  final bool enabled;
   final TextEditingController? controller;
   final ValueChanged<String>? onSubmitted;
 
@@ -17,7 +15,6 @@ class SearchWidget extends StatelessWidget {
     return TextField(
       controller: controller,
       autofocus: false,
-      enabled: enabled,
       onSubmitted: onSubmitted,
       decoration: InputDecoration(
         filled: true,

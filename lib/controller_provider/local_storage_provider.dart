@@ -5,7 +5,7 @@ final sharedPreferences = FutureProvider<SharedPreferences>(
     (_) async => await SharedPreferences.getInstance());
 
 class IsFavorite extends StateNotifier<List<String>> {
-  IsFavorite(this.prefs) : super(prefs?.getStringList("id") ?? []);
+  IsFavorite(this.prefs) : super(prefs?.getStringList("fav_list") ?? []);
 
   static final provider =
       StateNotifierProvider<IsFavorite, List<String>>((ref) {
@@ -24,11 +24,11 @@ class IsFavorite extends StateNotifier<List<String>> {
     } else {
       state = [...state, id];
     }
-    prefs!.setStringList("id", state);
+    prefs!.setStringList("fav_list", state);
   }
 
-  List<String>? getFavorite(String favoriteId) {
-    final List<String>? items = prefs!.getStringList('id');
-    return items;
+  bool? getFavorite(String favoriteId) {
+    final List<String>? favorite = prefs!.getStringList('fav_list');
+    return favorite?.contains(favoriteId);
   }
 }

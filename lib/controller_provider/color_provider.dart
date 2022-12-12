@@ -7,17 +7,14 @@ class ColorProvider extends StateNotifier<bool> {
   ColorProvider() : super(false);
 
   bool get isFavorite {
-    print("model asked for dark status: ${state}");
     return state;
   }
 
-  changeFavorite() {
-    print("toggler has listeners: ${hasListeners}");
+  void changeFavorite() {
     state = !state;
-    print("toggled to: ${state}");
   }
 
-  set isFavorite(bool value ) {
+  set isFavorite(bool value) {
     state = value;
   }
 }

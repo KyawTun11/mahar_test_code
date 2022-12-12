@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mahar_test_code/page/detail_page.dart';
-import 'package:mahar_test_code/page/search_page.dart';
 import '../model/movie_model.dart';
 import '../provider/movie_provider.dart';
 import '../widget/movie_cart.dart';
@@ -35,7 +34,7 @@ class HomePage extends ConsumerWidget {
                 ),
               ),
               isLoading
-                  ? Center(
+                  ? const Center(
                     child: CircularProgressIndicator(),
                   )
                   : ListView.builder(

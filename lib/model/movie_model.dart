@@ -4,7 +4,7 @@ class MovieModel {
   String? poster;
   String? desc;
   String? movie;
-  bool? favorite;
+  late bool favorite;
 
   MovieModel({
     this.id,
@@ -21,7 +21,7 @@ class MovieModel {
     poster = json['poster'];
     desc = json['desc'];
     movie = json['movie'];
-    favorite = json['favorite'];
+    favorite = json['favorite'] ?? false;
   }
 
   Map<String, dynamic> toJson() {

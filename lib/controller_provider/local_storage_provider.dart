@@ -26,4 +26,5 @@ class FavoriteIds extends StateNotifier<List<String>> {
     }
     pref!.setStringList("id", state);
   }
+
 }

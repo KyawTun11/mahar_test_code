@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/services.dart' as rootBundle;
 import '../model/movie_model.dart';
 import '../service/movie_service.dart';
+
 part 'movie_provider.freezed.dart';
 
 @freezed
@@ -37,9 +38,8 @@ class MovieNotifier extends StateNotifier<MovieState> {
         .map((e) => MovieModel.fromJson(e))
         .toList()
         .where((element) =>
-            element.name!.toLowerCase().contains(filter.toLowerCase()))
+        element.name!.toLowerCase().contains(filter.toLowerCase()))
         .toList();
-
     state = state.copyWith(movies: movies, isLoading: false);
   }
 }

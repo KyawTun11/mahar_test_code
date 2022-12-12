@@ -4,7 +4,7 @@ final colorProvider =
     StateNotifierProvider<ColorProvider, bool>((ref) => ColorProvider());
 
 class ColorProvider extends StateNotifier<bool> {
-  ColorProvider() : super(false)  {}
+  ColorProvider() : super(false);
 
   bool get isFavorite {
     print("model asked for dark status: ${state}");

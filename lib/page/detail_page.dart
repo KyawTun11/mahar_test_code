@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../controller_provider/color_provider.dart';
 import '../controller_provider/local_storage_provider.dart';
 import '../model/movie_model.dart';
+import '../provider/movie_provider.dart';
 import '../widget/video_player_widget.dart';
 
 class DetailPage extends ConsumerWidget {
@@ -16,11 +17,18 @@ class DetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colorValue = ref.watch(colorProvider);
-    final favoriteIds = ref.watch(FavoriteIds.provider);
+    // final favoriteIds = ref.watch(FavoriteIds.provider);
     return Scaffold(
       appBar: AppBar(
         title: Text("${movie.name}"),
         centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+            ref.read(moviesProvider.notifier).loadMovies();
+          },
+        ),
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),

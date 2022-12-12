@@ -3,8 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mahar_test_code/page/home-Page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    const ProviderScope(child: MyApp()),
+      const ProviderScope(
+        child: MyApp()),
   );
 }
 

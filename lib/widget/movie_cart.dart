@@ -39,7 +39,7 @@ class MovieCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "${movie.name}",
+                      movie.name!,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -47,7 +47,7 @@ class MovieCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      "${movie.desc}",
+                      movie.desc!,
                       style: const TextStyle(
                         fontWeight: FontWeight.normal,
                         fontSize: 14,
@@ -58,6 +58,7 @@ class MovieCard extends StatelessWidget {
                       Icons.favorite,
                       color: movie.favorite == true ? Colors.red : Colors.grey,
                     ),
+                    Text(movie.id!),
                     Text("${movie.favorite}"),
                   ],
                 ),

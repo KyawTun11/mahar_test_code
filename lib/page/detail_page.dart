@@ -46,11 +46,12 @@ class DetailPage extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "${movie.desc}",
+                  movie.desc!,
                   style: const TextStyle(
                     fontSize: 18,
                   ),
                 ),
+                Text("${movie.favorite}"),
                 IconButton(
                   icon: Icon(
                     Icons.favorite,
@@ -61,8 +62,8 @@ class DetailPage extends ConsumerWidget {
                   onPressed: () {
                     ref.read(colorProvider.notifier).changeFavorite();
                     ref
-                        .read(FavoriteIds.provider.notifier)
-                        .addFavorite(movie.id.toString());
+                        .read(IsFavorite.provider.notifier)
+                        .addFavorite(movie.id!);
                   },
                 ),
               ],

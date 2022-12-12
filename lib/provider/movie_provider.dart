@@ -23,12 +23,10 @@ class MovieNotifier extends StateNotifier<MovieState> {
   MovieNotifier() : super(const MovieState()) {
     loadMovies();
   }
-
   loadMovies() async {
     state = state.copyWith(isLoading: true);
     final moviesList = await MovieService().fetchMovies();
     final movies = moviesList.map((e) => MovieModel.fromJson(e)).toList();
-
     state = state.copyWith(movies: movies, isLoading: false);
   }
 

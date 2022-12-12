@@ -4,31 +4,31 @@ import 'package:shared_preferences/shared_preferences.dart';
 final sharedPreferences = FutureProvider<SharedPreferences>(
     (_) async => await SharedPreferences.getInstance());
 
-class FavoriteIds extends StateNotifier<List<String>> {
-  FavoriteIds(this.pref) : super(pref?.getStringList("id") ?? []);
+class IsFavorite extends StateNotifier<List<String>> {
+  IsFavorite(this.prefs) : super(prefs?.getStringList("id") ?? []);
 
   static final provider =
-      StateNotifierProvider<FavoriteIds, List<String>>((ref) {
+      StateNotifierProvider<IsFavorite, List<String>>((ref) {
     final pref = ref.watch(sharedPreferences).maybeWhen(
           data: (value) => value,
           orElse: () => null,
         );
-    return FavoriteIds(pref);
+    return IsFavorite(pref);
   });
 
-  final SharedPreferences? pref;
+  final SharedPreferences? prefs;
 
-  void addFavorite(String favoriteId) {//2
-    if (state.contains(favoriteId)) {// 1,2,3
-      state = state.where((favorite) => favorite != favoriteId).toList(); //1,3
+  void addFavorite(String id) {
+    if (state.contains(id)) {
+      state = state.where((favorite) => favorite != id).toList();
     } else {
-      state = [...state, favoriteId];
+      state = [...state, id];
     }
-    pref!.setStringList("id", state);
+    prefs!.setStringList("id", state);
   }
 
   List<String>? getFavorite(String favoriteId) {
-    final List<String>? items = pref!.getStringList('id');
+    final List<String>? items = prefs!.getStringList('id');
     return items;
   }
 }
